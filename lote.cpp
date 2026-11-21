@@ -1,32 +1,33 @@
-
-#include <iostream>
-#include <fstream>
+#include<iostream>
+#include<stdlib.h>
+#include<string.h>
+#include<fstream>
 using namespace std;
 
-const int MAX = 100;
-
-
-struct Defectos {
-    int falla1;
-    int falla2;
-    int falla3;
-    int falla4;
+struct falla{
+    int falla1,falla2,falla3,falla4;
 };
 
-struct Lote {
-    char codigo[20];
-    char producto[50];
-    char fecha[15];
+struct lote{
+    string codigo,producto,fecha;
     int cantidad;
-    Defectos defectos2;
-    float porcentaje;
-};
+    falla defectos;
+    float promedio;
+}datos;
 
-Lote lotes[MAX];
-int total = 0;
+int main(){
+    int opcion,i,j,n,mejor,totalDefectos;
+    ofstream archivo;
+    ifstream archivo2;
+    string texto;
+    char rpt;
+    lote lotes[100],aux;
 
-
-void limpiarBuffer() {
-    cin.clear();
-    cin.ignore(10000, '\n');
-}
+    do{
+        cout<<"\t.:MENU:."<<endl;
+        cout<<"1. Registrar Lote de Produccion"<<endl;
+        cout<<"2. Visualizar Lotes"<<endl;
+        cout<<"3. Visualizar el Lote de Calidad"<<endl;
+        cout<<"4. Salir"<<endl;
+        cout<<"Opcion: ";
+        cin>>opcion;
