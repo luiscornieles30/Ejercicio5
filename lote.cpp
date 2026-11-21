@@ -59,10 +59,10 @@ int main(){
                         cin>>rpt;
                     while (rpt != 's' && rpt != 'S') {
                         if (rpt != 'n' && rpt != 'N') {
-                            std::cout << "<< Coloque un caracter valido acorde a las indicaciones la proxima vez" << std::endl;
-                            std::cout << "¿Desea continuar? (s/n): ";
-                            std::cin >> rpt;
-                            std::cin.ignore(100000000, '\n');
+                            cout << "<< Coloque un caracter valido acorde a las indicaciones la proxima vez" << endl;
+                            cout << "¿Desea continuar? (s/n): " << endl;
+                            cin >> rpt;
+                            cin.ignore(100000000, '\n');
                         }
                         else {
                             break;
@@ -70,9 +70,10 @@ int main(){
                         }
                     }while((rpt == 'S') || (rpt == 's'));
 
-                    cout<<"\n";
-                    system("pause");
-                    break;
+                        if (rpt == 'n' || rpt == 'N') {
+                            cout << "No se agregara otro lote, gracias por usar." << endl;
+                            break;
+                        }
 
             case 2: 
 
