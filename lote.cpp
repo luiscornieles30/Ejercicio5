@@ -1,7 +1,6 @@
 #include<iostream>
-#include<stdlib.h>
-#include<string.h>
-#include<fstream>
+#include <fstream>
+#include <string>
 using namespace std;
 
 struct falla{
@@ -13,21 +12,118 @@ struct lote{
     int cantidad;
     falla defectos;
     float promedio;
-}datos;
+};
 
 int main(){
-    int opcion,i,j,n,mejor,totalDefectos;
-    ofstream archivo;
-    ifstream archivo2;
-    string texto;
+    int opcion,i,j,totalDefectos;
+    int n=0; 
     char rpt;
-    lote lotes[100],aux;
+    lote lotes[1000],aux;
 
     do{
-        cout<<"\t.:MENU:."<<endl;
+        cout<<"MENU"<<endl;
         cout<<"1. Registrar Lote de Produccion"<<endl;
         cout<<"2. Visualizar Lotes"<<endl;
         cout<<"3. Visualizar el Lote de Calidad"<<endl;
         cout<<"4. Salir"<<endl;
         cout<<"Opcion: ";
         cin>>opcion;
+
+        switch(opcion){
+
+            case 1: 
+                do{
+                        if(n>=1000){
+                            cout<<"\nNo hay espacio para mas lotes"<<endl;
+                            break;
+                        }
+
+                        fflush(stdin);
+                        cout<<"Codigo de Lote: " << endl; getline(cin,lotes[n].codigo);
+                        cout<<"Producto: "; getline(cin,lotes[n].producto);
+                        cout<<"Fecha: "; getline(cin,lotes[n].fecha);
+                        cout<<"Cantidad Producida: "; cin>>lotes[n].cantidad;
+                        cout<<"Defectos tipo de falla 1: "; cin>>lotes[n].defectos.falla1;
+                        cout<<"Defectos tipo de falla 2: "; cin>>lotes[n].defectos.falla2;
+                        cout<<"Defectos tipo de falla 3: "; cin>>lotes[n].defectos.falla3;
+                        cout<<"Defectos tipo de falla 4: "; cin>>lotes[n].defectos.falla4;
+
+                      
+                        totalDefectos=lotes[n].defectos.falla1+lotes[n].defectos.falla2+lotes[n].defectos.falla3+lotes[n].defectos.falla4;
+                        lotes[n].promedio=(float(totalDefectos)/lotes[n].cantidad)*100;
+
+                        cout<<"Porcentaje promedio de defectos: " <<lotes[n].promedio<<"%"<<endl;
+                        n++;
+
+                        cout<<"¿Desea Agregar otro lote? (s/n) " <<endl;
+                        cin>>rpt;
+                    while (rpt != 's' && rpt != 'S') {
+                        if (rpt != 'n' && rpt != 'N') {
+                            std::cout << "<< Coloque un caracter valido acorde a las indicaciones la proxima vez" << std::endl;
+                            std::cout << "¿Desea continuar? (s/n): ";
+                            std::cin >> rpt;
+                            std::cin.ignore(100000000, '\n');
+                        }
+                        else {
+                            break;
+                        }
+                        }
+                    }while((rpt == 'S') || (rpt == 's'));
+
+                    cout<<"\n";
+                    system("pause");
+                    break;
+
+            case 2: 
+
+                    if(n==0){
+                        cout<<"No hay lotes registrados"<<endl;
+                    }else{
+                        
+                        for(i=0;i<n-1;i++){
+                            for(j=0;j<n-i-1;j++){
+                                if(lotes[j].codigo > lotes[j+1].codigo){
+                                    aux=lotes[j];
+                                    lotes[j]=lotes[j+1];
+                                    lotes[j+1]=aux;
+                                }
+                            }
+                        }
+
+                       
+                        for(i=0;i<n;i++){
+                            cout<<"Codigo: "<<lotes[i].codigo<<endl;
+                            cout<<"Producto: "<<lotes[i].producto<<endl;
+                            cout<<"Fecha: "<<lotes[i].fecha<<endl;
+                            cout<<"Cantidad Producida: "<<lotes[i].cantidad<<endl;
+                            cout<<"Falla 1: "<<lotes[i].defectos.falla1<<endl;
+                            cout<<"Falla 2: "<<lotes[i].defectos.falla2<<endl;
+                            cout<<"Falla 3: "<<lotes[i].defectos.falla3<<endl;
+                            cout<<"Falla 4: "<<lotes[i].defectos.falla4<<endl;
+                            cout<<"Porcentaje de Defectos: "<<lotes[i].promedio<<"%"<<endl;
+                        }
+                    }
+
+                    cout<<"\n";
+                    system("pause");
+                    break;
+
+            case 3: //Andres vamos a jugar padel
+
+
+
+                    break;
+
+            case 4: 
+                  cout<< ("Programa Finalizado");
+                  break;
+            default:
+                  cout<< ("Porfavor seleccione una  opcion valdia para el programa.") << endl;
+                  break;
+        }
+        system("cls");
+    } while(opcion!=4);
+
+    system("pause");
+    return 0;
+}
