@@ -1,6 +1,7 @@
-#include<iostream>
+#include <iostream>
 #include <fstream>
 #include <string>
+#include <cstring>
 using namespace std;
 
 struct falla{
@@ -12,6 +13,7 @@ struct lote{
     int cantidad;
     falla defectos;
     float promedio;
+    char clasificacion[30];
 };
 
 int main(){
@@ -110,6 +112,45 @@ int main(){
                     break;
 
             case 3: //Andres vamos a jugar padel
+            if(n == 0){
+        cout << "No hay lotes registrados" << endl;
+         }
+        else{
+          int loteMenor = 0;
+
+        
+            for(i = 1; i < n; i++){
+                 if(lotes[i].promedio < lotes[loteMenor].promedio){
+                 loteMenor = i;
+            }
+            }
+
+        
+            if(lotes[loteMenor].promedio <= 0.5){
+                strcpy(lotes[loteMenor].clasificacion, "Aceptacion Maxima");
+            }
+            else if(lotes[loteMenor].promedio <= 2.0){
+            strcpy(lotes[loteMenor].clasificacion, "Aceptacion Estandar");
+            }
+            else{
+            strcpy(lotes[loteMenor].clasificacion, "Revision Obligatoria");
+            }
+
+        
+            cout << "===== LOTE DE CALIDAD =====" << endl;
+            cout << "Codigo de Lote: " << lotes[loteMenor].codigo << endl;
+            cout << "Producto: " << lotes[loteMenor].producto << endl;
+            cout << "Porcentaje promedio de defectos: "
+            << lotes[loteMenor].promedio << "%" << endl;
+            cout << "Clasificacion: "
+            << lotes[loteMenor].clasificacion << endl;
+        }
+
+         system("pause");
+         break;
+
+
+
 
 
 
