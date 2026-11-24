@@ -1,4 +1,4 @@
-#include <iostream>
+#include <iostream> //Desarrolle un programa en C++ para gestionar el control de calidad de un proceso de producción.
 #include <fstream>
 #include <string>
 #include <cstring>
