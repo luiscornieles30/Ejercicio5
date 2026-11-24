@@ -113,7 +113,7 @@ int main(){
                     system("pause");
                     break;
 
-            case 3: //Andres vamos a jugar padel
+            case 3:
             if(n == 0){
                 cout << "No hay lotes registrados" << endl;
                  }
