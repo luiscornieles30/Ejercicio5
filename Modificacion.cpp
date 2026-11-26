@@ -60,7 +60,7 @@ int main() {
 
                     while (f <= cFallas) {
                         if (f <= cFallas) {
-                            cout << "Tipo de falla " << f << ": ";
+                            cout << "Defectos tipo de falla " << f << ": ";
                             cin >> lotes[n].defectos.falla;
                             totalDefectos += lotes[n].defectos.falla;
                             f++;
